@@ -10,7 +10,7 @@ const initialState ={
     description: ""
 }
 const Signup = () => {
-    const [signupData,setSignupData] = React.useState(initialState);
+    const [signupData, setSignupData] = React.useState(initialState);
 
     const handleChange = (e) =>{
         const {name , value} = e.target;
@@ -26,7 +26,8 @@ const Signup = () => {
                 isValid = false;
             }
             if(!isValid){
-                return alert("Please fill all the fields");
+                alert("Please fill all the fields");
+                return;
             }
         })
         axios({
@@ -41,13 +42,11 @@ const Signup = () => {
     }
     return(
         <div>
-            {
-            Object.keys(signupData).map(elem =>(
-                <div key = {elem}>
-                    <input onChange = {handleChange} value = {signupData[elem]} type = "text" placeholder= {elem} />
+            {Object.keys(signupData).map(elem =>(
+                <div>
+                    <input placeholder= {elem} name = {elem} key ={elem} value = {signupData[elem]} type = "text" onChange = {handleChange} />
                 </div>
-            ))
-            }
+            ))}
             <button onClick={handleSignup}>Sign Up</button>
         </div>
     )
