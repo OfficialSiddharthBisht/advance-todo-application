@@ -15,13 +15,13 @@ const Signup = () => {
     const handleChange = (e) =>{
         const {name , value} = e.target;
         setSignupData(prev =>(
-            {...prev,[name] : value}
+            { ...prev, [name] : value}
         ));
     }
 
-    const handleSignup = (e) =>{
+    const handleSignup = () =>{
+        let isValid = true;
         Object.values(signupData).forEach(el => {
-            let isValid = true;
             if(!el){
                 isValid = false;
             }
@@ -30,7 +30,7 @@ const Signup = () => {
             }
         })
         axios({
-            method: "POST",
+            method: "post",
             url: "https://masai-api-mocker.herokuapp.com/auth/register",
             data : signupData
         }).then(res => {
@@ -43,8 +43,8 @@ const Signup = () => {
         <div>
             {
             Object.keys(signupData).map(elem =>(
-                <div>
-                    <input key = {elem} onChange = {handleChange} value = {signupData[elem]} type = "text" placeholder= {elem} />
+                <div key = {elem}>
+                    <input onChange = {handleChange} value = {signupData[elem]} type = "text" placeholder= {elem} />
                 </div>
             ))
             }
