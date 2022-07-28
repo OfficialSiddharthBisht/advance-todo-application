@@ -40,7 +40,7 @@ const Login = () => {
             {
             Object.keys(loginData).map(elem =>(
                 <div>
-                    <input key = {elem} onChange = {handleChange} value = {loginData[elem]} type = "text" placeholder= {elem} />
+                    <input key = {elem} name = {elem} onChange = {handleChange} value = {loginData[elem]} type = "text" placeholder= {elem} />
                 </div>
             ))
             }
